@@ -20,6 +20,10 @@ def main() -> None:
     path = os.path.join(out_dir, "entry.txt")
     with open(path, "w", encoding="utf-8", newline="") as f:
         f.write(TEXT)
+    # Read back and verify the written bytes match exactly.
+    with open(path, "r", encoding="utf-8", newline="") as f:
+        written = f.read()
+    assert written == TEXT, "entry.txt bytes differ from TEXT"
 
 
 if __name__ == "__main__":
